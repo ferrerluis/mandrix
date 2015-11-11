@@ -1,1 +1,4 @@
+.gitignore
 key.txt
+mandrix_commands/__init__.pyc
+mandrix_commands/send.pyc
