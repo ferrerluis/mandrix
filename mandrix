@@ -11,7 +11,7 @@ def main():
 
 	print ''	# To make the output readable
 
-	commands =  [os.path.basename(command).split('.')[0] for command in glob.glob('mandrix_commands/*.py') if not command.split('.')[0].endswith('__init__')]
+	commands =  [os.path.basename(command).split('.')[0] for command in glob.glob('commands/*.py') if not command.split('.')[0].endswith('__init__')]
 	key = open('key.txt').read().strip()
 
 	if len(options) <= 1:
@@ -22,7 +22,7 @@ def main():
 		print 'Available commands:\n', '\t' + '\n\t'.join(commands)
 		quit(-1)
 	else:
-		modules = __import__('mandrix_commands', fromlist=[options[1]])
+		modules = __import__('commands', fromlist=[options[1]])
 		command = getattr(modules, options[1])
 
 		parser = ArgumentParser(description=command.description, prog=options[0] + ' ' + options[1])
