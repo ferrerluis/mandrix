@@ -1,0 +1,32 @@
+#!/usr/bin/python
+
+from sys import argv
+from argparse import ArgumentParser
+import glob
+import os
+
+options = argv
+
+def main():
+
+	print ''	# To make the output readable
+
+	commands =  [os.path.basename(command).split('.')[0] for command in glob.glob('mandrix_commands/*.py') if not command.split('.')[0].endswith('__init__')]
+	key = open('key.txt').read().strip()
+
+	if len(options) <= 1:
+		print 'Please specify a valid command for Mandrix to execute'
+		quit(-1)
+	elif options[1] not in commands:
+		print 'Invalid command for Mandrix:', options[1]
+		print 'Available commands:\n', '\t' + '\n\t'.join(commands)
+		quit(-1)
+	else:
+		modules = __import__('mandrix_commands', fromlist=[options[1]])
+		command = getattr(modules, options[1])
+
+		parser = ArgumentParser(description=command.description, prog=options[0] + ' ' + options[1])
+
+		command.main(options[2:], parser, key) # Every command implemented needs a main(options, parser, key) function so that it can implement the ArgumentParser with the specific options for the command and gets the user key for accessing the API
+
+main()
