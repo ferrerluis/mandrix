@@ -21,12 +21,12 @@ def main():
 		print 'Invalid command for Mandrix:', options[1]
 		print 'Available commands:\n', '\t' + '\n\t'.join(commands)
 		quit(-1)
-	else:
-		modules = __import__('commands', fromlist=[options[1]])
-		command = getattr(modules, options[1])
 
-		parser = ArgumentParser(description=command.description, prog=options[0] + ' ' + options[1])
+	modules = __import__('commands', fromlist=[options[1]])
+	command = getattr(modules, options[1])
 
-		command.main(options[2:], parser, key) # Every command implemented needs a main(options, parser, key) function so that it can implement the ArgumentParser with the specific options for the command and gets the user key for accessing the API
+	parser = ArgumentParser(description=command.description, prog=options[0] + ' ' + options[1])
+
+	command.main(options[2:], parser, key) # Every command implemented needs a main(options, parser, key) function so that it can implement the ArgumentParser with the specific options for the command and gets the user key for accessing the API
 
 main()
