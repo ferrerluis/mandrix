@@ -5,7 +5,7 @@ They have wrappers for Python, PHP and more, but they don't really have an easy 
 
 ## Installation
 * Clone the repo in whatever directory you want: `git clone https://github.com/ferrerluis/room.git`
-* While in the root directory of the repo, create a symbolic link from Mandrix to your binaries folder: `ln -s \`pwd\`/mandrix ~/bin`
+* While in the root directory of the repo, create a symbolic link from Mandrix to your binaries folder: ``ln -s `pwd`/mandrix ~/bin``
 * If you have not before, add your binaries folder to your path: `$PATH=$PATH":~/bin"`. You may want to add that line of code to your .bashrc file so that it gets loaded when you log into your account.
 
 ## Usage
