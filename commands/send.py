@@ -19,7 +19,7 @@ def split_options(options): #Spliting the options that accept multiple elements 
 	regex = '[ ,]+'
 	return [option for option in re_split(regex, options) if option != '']
 
-def main(options, parser, key):
+def run(options, parser, key):
 
 	url = 'https://mandrillapp.com/api/1.0/messages/send.json' #Url for sending emails through MailChimp API
 
@@ -92,4 +92,4 @@ def main(options, parser, key):
 
 	#Sending request and printing response!
 	r = requests.post(url, json=request)
-	print r.text
+	return r.text

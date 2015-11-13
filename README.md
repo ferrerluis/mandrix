@@ -16,7 +16,7 @@ The program can be run from any directory by typing `mandrix command options arg
 You can check all the available options and mandatory arguments for a command by typing `mandrix command -h` (e.g. `mandrix send -h`).
 
 ## Contributing
-I tried to make contributing super easy, so you can just create "modules" inside of the *commands* folder. They just have to meet one requisite: they must have a *main* function that accepts three parameters:
+I tried to make contributing super easy, so you can just create "modules" inside of the *commands* folder. They just have to meet one requisite: they must have a *run* function that accepts three parameters and returns the response text gotten from the server:
 * A list of command-line parameters `options` (strings) that will be passed as the arguments for the ArgumentParser when parsing the arguments: `parser.parse_args(args=options)`.
 * An ArgumentParser object `parser` that you will use for adding necessary arguments for the command and parsing them. The advantage of this is that it makes getting arguments and optional arguments from the command line pretty easy and effortless. It even builds a --help optional for you! You can check the *send.py* file as an example on how to use the ArgumentParser.
 * The `key` to be used by the API. It will be a normal string.

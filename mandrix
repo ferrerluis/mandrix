@@ -27,6 +27,8 @@ def main():
 
 	parser = ArgumentParser(description=command.description, prog=options[0] + ' ' + options[1])
 
-	command.main(options[2:], parser, key) # Every command implemented needs a main(options, parser, key) function so that it can implement the ArgumentParser with the specific options for the command and gets the user key for accessing the API
+	response = command.run(options[2:], parser, key) # Every command implemented needs a main(options, parser, key) function so that it can implement the ArgumentParser with the specific options for the command and gets the user key for accessing the API. It also has to return the response from the server.
+
+	print response, '\n'
 
 main()
