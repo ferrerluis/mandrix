@@ -7,6 +7,7 @@ They have wrappers for Python, PHP and more, but they don't really have an easy 
 * Clone the repo in whatever directory you want: `git clone https://github.com/ferrerluis/room.git`
 * While in the root directory of the repo, create a symbolic link from Mandrix to your binaries folder: ``ln -s `pwd`/mandrix ~/bin``
 * If you have not before, add your binaries folder to your path: `$PATH=$PATH":~/bin"`. You may want to add that line of code to your .bashrc file so that it gets loaded when you log into your account.
+* Make sure that you add a `key.txt` file in the same directory as `mandrix` that contains the Mandrill API key only. You can get this key from Mandrill's website by creating an account. It gives you 2000 emails for free and the service is pretty cheap even afterwards.
 
 ## Usage
 The program can be run from any directory by typing `mandrix command options arguments`, where
