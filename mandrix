@@ -4,6 +4,7 @@ from sys import argv
 from argparse import ArgumentParser
 import glob
 import os
+from commands import cur_dir
 
 options = argv
 
@@ -11,8 +12,8 @@ def main():
 
 	print ''	# To make the output readable
 
-	commands =  [os.path.basename(command).split('.')[0] for command in glob.glob('commands/*.py') if not command.split('.')[0].endswith('__init__')]
-	key = open('key.txt').read().strip()
+	commands =  [os.path.basename(command).split('.')[0] for command in glob.glob(cur_dir + '/*.py') if command.split('.')[0] != '__init__']
+
 
 	if len(options) <= 1:
 		print 'Please specify a valid command for Mandrix to execute'
@@ -24,7 +25,12 @@ def main():
 
 	modules = __import__('commands', fromlist=[options[1]])
 	command = getattr(modules, options[1])
+	key_path = cur_dir + '/../key.txt'
 
+	#print cur_dir, key_path
+	#quit()
+
+	key = open(key_path).read().strip()
 	parser = ArgumentParser(description=command.description, prog=options[0] + ' ' + options[1])
 
 	response = command.run(options[2:], parser, key) # Every command implemented needs a main(options, parser, key) function so that it can implement the ArgumentParser with the specific options for the command and gets the user key for accessing the API. It also has to return the response from the server.
