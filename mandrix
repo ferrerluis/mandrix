@@ -5,7 +5,6 @@ from argparse import ArgumentParser
 import glob
 import os
 from commands import cur_dir
-import readline
 
 options = argv
 commands =  [os.path.basename(command).split('.')[0] for command in glob.glob(cur_dir + '/*.py') if command.split('.')[0] != '__init__']
@@ -25,9 +24,6 @@ def main():
 	modules = __import__('commands', fromlist=[options[1]])
 	command = getattr(modules, options[1])
 	key_path = cur_dir + '/../key.txt'
-
-	#print cur_dir, key_path
-	#quit()
 
 	key = open(key_path).read().strip()
 	parser = ArgumentParser(description=command.description, prog=options[0] + ' ' + options[1])
