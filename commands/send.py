@@ -27,7 +27,7 @@ def run(options, parser, key):
 
 	#Adding all accepted arguments for the command. help is what is shown when you use the -h or --help flag after the command (e.g. mandrill -h)
 	parser.add_argument('-md', '--message-md', action='store_true', help='Signals that the message for the email is in Markdown format.')
-	parser.add_argument('-m', '--message', default=stdin.read(), help='Message for the email in HTML format (or plain text).')
+	parser.add_argument('-m', '--message', default=stdin.read() if not stdin.isatty() else '', help='Message for the email in HTML format (or plain text).')
 	parser.add_argument('-s', '--subject', default='', help='Subject for the email.')
 	parser.add_argument('from_email', help='Email address that is sending the email.')
 	parser.add_argument('-n', '--name', default='', help='Name of the person sending the email.')
