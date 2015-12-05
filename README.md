@@ -11,10 +11,16 @@ They have wrappers for Python, PHP and more, but they don't really have an easy 
 
 ## Usage
 The program can be run from any directory by typing `mandrix command options arguments`, where
+
 * `command` is one of the available commands for Mandrix (only `send` for now),
 * `options` are any of the options available for the specific command (e.g. `--message "Some text for the message"` in the case of the command `send`), and
 * `arguments` are the mandatory arguments for such command.
+
 You can check all the available options and mandatory arguments for a command by typing `mandrix command -h` (e.g. `mandrix send -h`).
+
+One simple example would be sending an email with Markdown format piped to Mandrix:
+
+`echo sample_file.md | mandrix send -md -s "Best Subject Ever" -n "John Doe" from@example.com to@example.com`
 
 ## Contributing
 I tried to make contributing super easy, so you can just create "modules" inside of the *commands* folder. They just have to meet one requisite: they must have a *run* function that accepts three parameters and returns the response text gotten from the server:
