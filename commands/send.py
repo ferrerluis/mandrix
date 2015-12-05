@@ -24,10 +24,10 @@ def run(options, parser, key):
 	url = 'https://mandrillapp.com/api/1.0/messages/send.json' #Url for sending emails through MailChimp API
 
 	#Adding all accepted arguments for the command. help is what is shown when you use the -h or --help flag after the command (e.g. mandrill -h)
-	parser.add_argument('-m', '--message', default='Test', help='Message for the email.')
-	parser.add_argument('-s', '--subject', default='Test', help='Subject for the email.')
+	parser.add_argument('-m', '--message', default='', help='Message for the email.')
+	parser.add_argument('-s', '--subject', default='', help='Subject for the email.')
 	parser.add_argument('from_email', help='Email address that is sending the email.')
-	parser.add_argument('-n', '--name', default='John/Jane Doe', help='Name of the person sending the email.')
+	parser.add_argument('-n', '--name', default='', help='Name of the person sending the email.')
 	parser.add_argument('to_email', help='Email address(es) where the email is being sent separated by commas/spaces. If spaces then wrap around quote marks.')
 	parser.add_argument('-c', '--cc', default='', help='Email address(es) to send the email as CC. If spaces then wrap around quote marks.')
 	parser.add_argument('-I', '--important', action='store_true', help='Marks email as important.')
@@ -37,9 +37,9 @@ def run(options, parser, key):
 
 	#Extracting info from the Parser
 	message = options.message
-	subject = options.subject
+`	subject = options.subject
 	from_email = options.from_email
-	from_name = options.name
+	from_name = options.name if options.name else from_email
 	important = options.important
 	attachments = split_options(options.attachment) #Using split_options so I get filter empty strings in the list
 	to_emails = split_options(options.to_email)
