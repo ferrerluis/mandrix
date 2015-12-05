@@ -5,6 +5,8 @@ import json
 from base64 import b64encode
 from re import split as re_split
 from os import path
+from sys import stdin
+from markdown import markdown
 
 description = 'A command for sending emails by using the Mandrill API by MailChimp! Created with love by Luis Ferrer-Labarca'
 
@@ -24,7 +26,8 @@ def run(options, parser, key):
 	url = 'https://mandrillapp.com/api/1.0/messages/send.json' #Url for sending emails through MailChimp API
 
 	#Adding all accepted arguments for the command. help is what is shown when you use the -h or --help flag after the command (e.g. mandrill -h)
-	parser.add_argument('-m', '--message', default='', help='Message for the email.')
+	parser.add_argument('-md', '--message-md', action='store_true', help='Signals that the message for the email is in Markdown format.')
+	parser.add_argument('-m', '--message', default=stdin.read(), help='Message for the email in HTML format (or plain text).')
 	parser.add_argument('-s', '--subject', default='', help='Subject for the email.')
 	parser.add_argument('from_email', help='Email address that is sending the email.')
 	parser.add_argument('-n', '--name', default='', help='Name of the person sending the email.')
@@ -36,7 +39,7 @@ def run(options, parser, key):
 	options = parser.parse_args(args=options) #Parsing arguments from the options passed. Creates an object
 
 	#Extracting info from the Parser
-	message = options.message
+	message = markdown(options.message) if options.message_md else options.message
 	subject = options.subject
 	from_email = options.from_email
 	from_name = options.name if options.name else from_email
