@@ -49,7 +49,7 @@ def run(options, parser, key):
 	request = {
 	    'key': key,
 	    'message': {
-		'html': '<p>' + message + '</p>',
+		'html': message,
 		'text': 'Example text content',
 		'subject': subject,
 		'from_email': from_email,

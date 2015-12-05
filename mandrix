@@ -5,15 +5,14 @@ from argparse import ArgumentParser
 import glob
 import os
 from commands import cur_dir
+import readline
 
 options = argv
+commands =  [os.path.basename(command).split('.')[0] for command in glob.glob(cur_dir + '/*.py') if command.split('.')[0] != '__init__']
 
 def main():
 
 	print ''	# To make the output readable
-
-	commands =  [os.path.basename(command).split('.')[0] for command in glob.glob(cur_dir + '/*.py') if command.split('.')[0] != '__init__']
-
 
 	if len(options) <= 1:
 		print 'Please specify a valid command for Mandrix to execute'
