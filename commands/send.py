@@ -37,7 +37,7 @@ def run(options, parser, key):
 
 	#Extracting info from the Parser
 	message = options.message
-`	subject = options.subject
+	subject = options.subject
 	from_email = options.from_email
 	from_name = options.name if options.name else from_email
 	important = options.important
