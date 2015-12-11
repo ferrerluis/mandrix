@@ -4,6 +4,14 @@ Mandrill is a great API developed by MailChimp for managing emails. Their docume
 They have wrappers for Python, PHP and more, but they don't really have an easy way to use their API on the fly via the terminal. Since I don't like writing complicated stuff in Bash and I personally don't love C, I decided to write a wrapper in Python (Mandrill + Unix = Mandrix!) that would let you use their features as if it was a normal command! Keep reading the docs for more info!
 
 ## Installation
+
+### Pre-Requisites
+
+* Make sure you use Python2 as your default Python. if not, modify the first line of the scripts with the correct python interpreter (e.g. change `#!/usr/bin/python` for `#!/usr/bin/python2`)
+* Download `markdown` for Python by using `sudo pip install markdown`
+
+### Setting Up Mandrix
+
 * Clone the repo in whatever directory you want: `git clone https://github.com/ferrerluis/room.git`
 * While in the root directory of the repo, create a symbolic link from Mandrix to your binaries folder: ``ln -s `pwd`/mandrix ~/bin``
 * If you have not before, add your binaries folder to your path: `$PATH=$PATH":~/bin"`. You may want to add that line of code to your .bashrc file so that it gets loaded when you log into your account.
